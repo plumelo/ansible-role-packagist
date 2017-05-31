@@ -1,0 +1,16 @@
+---
+- name: packagist_config
+  template:
+    src: packagist/app/config/parameters.yml.j2
+    dest: "{{ packagist_path }}/app/config/parameters.yml"
+
+- name: Install composer
+  get_url: url=https://getcomposer.org/composer.phar dest=/usr/local/bin/composer mode=a+x
+
+- name: Install composer packages
+  environment:
+    COMPOSER_CACHE_DIR: "{{ packagist_path }}/.cache"
+  composer:
+    command: install
+    working_dir: "{{ packagist_path }}"
+  become_user: "{{ packagist_websrv_user }}"

@@ -1,0 +1,18 @@
+---
+
+- include_role: name=jdauphant.nginx private=true
+  vars:
+    nginx_sites:
+      packagist:
+        - server_name {{ packagist_hosts|join(' ') }}
+        - root "/srv/packagist/web"
+        - index index.html index.htm index.php
+        - |
+          location / {
+            try_files $uri /app.php$is_args$args;
+          }
+        - |
+          location ~ \.php$ {
+            include snippets/fastcgi-php.conf;
+            fastcgi_pass localhost:9001;
+          }

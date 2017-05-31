@@ -1,0 +1,19 @@
+---
+
+# tasks file for composer-role
+- name: Install prerequsites
+  apt:
+    update_cache: yes
+    pkg: "{{ item }}"
+    state: present
+  with_items:
+    - zip
+    - unzip
+    - acl
+    - git
+
+- include: download.yml
+- include: php.yml
+- include: nginx.yml
+- include: database.yml
+- include: install.yml

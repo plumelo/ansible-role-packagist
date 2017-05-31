@@ -1,0 +1,12 @@
+---
+
+- include_role: name=ANXS.postgresql private=true
+  vars:
+    postgresql_users:
+      - name: "{{ packagist_database_user }}"
+        pass: "{{ packagist_database_pass }}"
+        encrypted: no
+    postgresql_databases:
+      - name: "{{ packagist_database_name }}"
+        owner: "{{ packagist_database_user }}"
+    when: packagist_database == 'pgsql'

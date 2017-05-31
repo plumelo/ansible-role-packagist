@@ -1,0 +1,25 @@
+---
+
+# [SYSTEM]
+packagist_websrv_user: www-data
+packagist_websrv_group: www-data
+# Folders
+packagist_path: "/srv/packagist"
+packagist_path_owner: "{{ packagist_websrv_user }}"
+packagist_path_group: "{{ packagist_websrv_group }}"
+
+# Download
+packagist_download_filename: "packagist-master.zip"
+packagist_download_folder: "packagist-master"
+packagist_download_url: "https://github.com/composer/packagist/archive/master.zip"
+packagist_download_sha256: "ae338f8ab9c6c0d464ecbb61da9f9cfcf106b1c1346177eb8eda877bf5dbb225 "
+
+#
+packagist_hosts:
+  - packagist.local
+
+# Database
+packagist_database: "pgsql"
+packagist_database_name: "packagist"
+packagist_database_user: "packagist"
+packagist_database_pass: "packagist"

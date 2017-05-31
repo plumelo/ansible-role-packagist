@@ -1,0 +1,41 @@
+---
+
+- name: Create downloads folder
+  file:
+    state: directory
+    path: "{{ item }}"
+  with_items:
+    - "~/.packagist/"
+
+- name: Download packagist
+  get_url:
+    url: "{{ packagist_download_url }}"
+    sha256sum: "{{ packagist_download_sha256 }}"
+    dest: "~/.packagist/{{ packagist_download_filename }}"
+  register: packagist_download
+
+
+- name: Create folders
+  file:
+    state: directory
+    owner: "{{ packagist_path_owner }}"
+    group: "{{ packagist_path_group }}"
+    path: "{{ item }}"
+  with_items:
+    - "{{ packagist_path }}"
+
+- name: Extract packagist
+  unarchive:
+    src: "{{ packagist_download.dest }}"
+    creates: /root/.packagist/packagist-master/composer.json
+    dest: "~/.packagist/"
+    owner: "{{ packagist_path_owner }}"
+    group: "{{ packagist_path_group }}"
+    mode: 0775
+    remote_src: yes
+  register: packagist_unarchived
+
+- name: Copy to dest
+  command: cp -a ~/.packagist/packagist-master/. "{{ packagist_path }}"
+  args:
+    creates: /srv/packagist/composer.json
