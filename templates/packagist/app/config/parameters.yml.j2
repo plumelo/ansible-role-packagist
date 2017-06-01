@@ -1,9 +1,10 @@
 parameters:
-  database_driver: pdo_pgsql
-  database_host: "{{ packagist_hosts }}"
-  database_name: "{{ packagist_database_name }}"
   database_user: "{{ packagist_database_user }}"
+  database_driver: pdo_pgsql
+  database_host: "{{ packagist_database_host }}"
+  database_name: "{{ packagist_database_name }}"
   database_password: "{{ packagist_database_pass }}"
+  database_charset: "{{ packagist_database_charset }}"
 
   mailer_transport:
   mailer_host: localhost
@@ -16,9 +17,9 @@ parameters:
   # router.request_context.host: '%packagist_host%'
   # router.request_context.scheme: https
 
-  redis_dsn: redis://localhost/1
+  redis_dsn: "{{ packagist_redis_dsn }}"
   redis_dsn_test: redis://127.0.0.1/14
-  redis_session_dsn: redis://localhost/2
+  redis_session_dsn: "{{ packagist_session_dsn }}"
 
   solr_host: 127.0.0.1
   solr_port: 8983
@@ -28,7 +29,7 @@ parameters:
   locale: en
 
   google_analytics:
-      ga_key:
+    ga_key:
 
   github.client_id: CHANGE_ME_IN_PROD
   github.client_secret: CHANGE_ME_IN_PROD
@@ -42,3 +43,5 @@ parameters:
   force_ssl: false
   trusted_proxies: ~
   trusted_hosts: ~
+
+  session_save_path: /var/lib/php/sessions

@@ -1,8 +1,14 @@
 ---
+
 - name: packagist_config
   template:
     src: packagist/app/config/parameters.yml.j2
     dest: "{{ packagist_path }}/app/config/parameters.yml"
+
+- name: packagist_config_charset
+  template:
+    src: packagist/app/config/config.yml.j2
+    dest: "{{ packagist_path }}/app/config/config.yml"
 
 - name: Install composer
   get_url: url=https://getcomposer.org/composer.phar dest=/usr/local/bin/composer mode=a+x
@@ -14,3 +20,37 @@
     command: install
     working_dir: "{{ packagist_path }}"
   become_user: "{{ packagist_websrv_user }}"
+
+- name: Validate packagist schema
+  shell: "app/console doctrine:schema:validate"
+  become_user: "{{ packagist_websrv_user }}"
+  failed_when: no
+  changed_when: no
+  args:
+    chdir: /srv/packagist
+  register: packagist_schema_status
+
+- debug: var=packagist_schema_status
+
+- name: Create packagist schema
+  shell: "app/console doctrine:schema:create"
+  become_user: "{{ packagist_websrv_user }}"
+  args:
+    chdir: /srv/packagist
+  when: '"[Database] OK" not in packagist_schema_status.stdout'
+
+- name: Clear Production Packagist Cache
+  shell: "app/console cache:clear --env=prod"
+  become_user: "{{ packagist_websrv_user }}"
+  args:
+    chdir: /srv/packagist
+
+- name: Install web assets
+  shell: app/console assets:install web
+  become_user: "{{ packagist_websrv_user }}"
+  args:
+    chdir: /srv/packagist
+
+# - name: Set packagist dir permissions
+#   shell: chown -R apache:apache /srv/packagist/
+#   become: true

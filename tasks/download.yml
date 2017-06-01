@@ -39,3 +39,12 @@
   command: cp -a ~/.packagist/packagist-master/. "{{ packagist_path }}"
   args:
     creates: /srv/packagist/composer.json
+
+- name: Set permissions
+  file:
+    owner: "{{ packagist_path_owner }}"
+    group: "{{ packagist_path_group }}"
+    path: "{{ item }}"
+    recurse: yes
+  with_items:
+    - "{{ packagist_path }}"

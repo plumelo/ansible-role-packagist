@@ -16,4 +16,5 @@
 - include: php.yml
 - include: nginx.yml
 - include: database.yml
+- include: redis.yml
 - include: install.yml
