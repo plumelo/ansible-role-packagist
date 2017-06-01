@@ -18,8 +18,15 @@ packagist_download_sha256: "ae338f8ab9c6c0d464ecbb61da9f9cfcf106b1c1346177eb8eda
 packagist_hosts:
   - packagist.local
 
+
 # Database
 packagist_database: "pgsql"
 packagist_database_name: "packagist"
 packagist_database_user: "packagist"
 packagist_database_pass: "packagist"
+packagist_database_host: "localhost"
+packagist_database_charset: "utf8"
+
+# redis
+packagist_redis_dsn: "redis://localhost/1"
+packagist_session_dsn: "redis://localhost/2"
