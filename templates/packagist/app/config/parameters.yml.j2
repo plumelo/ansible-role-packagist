@@ -1,6 +1,6 @@
 parameters:
   database_user: "{{ packagist_database_user }}"
-  database_driver: pdo_pgsql
+  database_driver: "{{ packagist_database_driver }}"
   database_host: "{{ packagist_database_host }}"
   database_name: "{{ packagist_database_name }}"
   database_password: "{{ packagist_database_pass }}"
@@ -31,15 +31,14 @@ parameters:
   google_analytics:
     ga_key:
 
-  github.client_id: CHANGE_ME_IN_PROD
-  github.client_secret: CHANGE_ME_IN_PROD
+  github.client_id: "{{ packagist_github_client_id }}"
+  github.client_secret: "{{ packagist_github_client_secret }}"
 
   validation_cache_backend: ~
   doctrine_cache_backend: array
 
-  secret: CHANGE_ME_IN_PROD
-  remember_me.secret: CHANGE_ME_IN_PROD
-
+  secret: "{{ packagist_secret }}"
+  remember_me.secret: "{{ packagist_remember_me_secret }}"
   force_ssl: false
   trusted_proxies: ~
   trusted_hosts: ~

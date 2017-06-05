@@ -18,15 +18,26 @@ packagist_download_sha256: "ae338f8ab9c6c0d464ecbb61da9f9cfcf106b1c1346177eb8eda
 packagist_hosts:
   - packagist.local
 
-
 # Database
-packagist_database: "pgsql"
+packagist_database: "mysql"
+packagist_database_driver: "pdo_mysql"
 packagist_database_name: "packagist"
 packagist_database_user: "packagist"
 packagist_database_pass: "packagist"
 packagist_database_host: "localhost"
 packagist_database_charset: "utf8"
 
-# redis
+# Redis
 packagist_redis_dsn: "redis://localhost/1"
 packagist_session_dsn: "redis://localhost/2"
+
+packagist_github_client_id: "CHANGE_ME_IN_PROD"
+packagist_github_client_secret: "CHANGE_ME_IN_PROD"
+
+packagist_secret: "CHANGE_ME_IN_PROD"
+packagist_remember_me_secret: "CHANGE_ME_IN_PROD"
+
+# Packagist user
+packagist_user: "admin"
+packagist_email: "admin@yahoo.com"
+packagist_pass: "admin"

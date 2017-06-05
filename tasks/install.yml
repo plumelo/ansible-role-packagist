@@ -30,8 +30,6 @@
     chdir: /srv/packagist
   register: packagist_schema_status
 
-- debug: var=packagist_schema_status
-
 - name: Create packagist schema
   shell: "app/console doctrine:schema:create"
   become_user: "{{ packagist_websrv_user }}"
@@ -50,6 +48,21 @@
   become_user: "{{ packagist_websrv_user }}"
   args:
     chdir: /srv/packagist
+
+- name: Query sql
+  shell: 'app/console doctrine:query:sql "select username from fos_user;"'
+  become_user: "{{ packagist_websrv_user }}"
+  args:
+    chdir: /srv/packagist
+  register: packagist_fos_user
+
+- name: Create user
+  shell: "app/console fos:user:create {{ packagist_user }} {{ packagist_email }} {{ packagist_pass }}"
+  become_user: "{{ packagist_websrv_user }}"
+  args:
+    chdir: /srv/packagist
+  when: '"{{ packagist_user }}" not in packagist_fos_user.stdout'
+
 
 # - name: Set packagist dir permissions
 #   shell: chown -R apache:apache /srv/packagist/

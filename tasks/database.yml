@@ -1,12 +1,14 @@
 ---
 
-- include_role: name=ANXS.postgresql private=true
+- include_role: name=megheaiulian.mysql private=true
   vars:
-    postgresql_users:
-      - name: "{{ packagist_database_user }}"
-        pass: "{{ packagist_database_pass }}"
-        encrypted: no
-    postgresql_databases:
+    mysql_databases:
       - name: "{{ packagist_database_name }}"
-        owner: "{{ packagist_database_user }}"
-    when: packagist_database == 'pgsql'
+    mysql_users:
+      - name: "{{packagist_database_user}}"
+        pass: "{{packagist_database_pass}}"
+        privs:
+          - "{{ packagist_database_name }}.*:ALL"
+        hosts:
+          - "{{packagist_database_host}}"
+    when: packagist_database == 'mysql'
