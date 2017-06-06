@@ -41,3 +41,11 @@ packagist_remember_me_secret: "CHANGE_ME_IN_PROD"
 packagist_user: "admin"
 packagist_email: "admin@yahoo.com"
 packagist_pass: "admin"
+
+# Packagist mailer
+packagist_mailer_transport:
+packagist_mailer_host: "localhost"
+packagist_mailer_user:
+packagist_mailer_password:
+packagist_mailer_from_email:
+packagist_mailer_from_name:
