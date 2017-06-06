@@ -12,7 +12,7 @@ packagist_path_group: "{{ packagist_websrv_group }}"
 packagist_download_filename: "packagist-master.zip"
 packagist_download_folder: "packagist-master"
 packagist_download_url: "https://github.com/composer/packagist/archive/master.zip"
-packagist_download_sha256: "ae338f8ab9c6c0d464ecbb61da9f9cfcf106b1c1346177eb8eda877bf5dbb225 "
+packagist_download_sha256: "ae338f8ab9c6c0d464ecbb61da9f9cfcf106b1c1346177eb8eda877bf5dbb225"
 
 #
 packagist_hosts:
@@ -47,5 +47,5 @@ packagist_mailer_transport:
 packagist_mailer_host: "localhost"
 packagist_mailer_user:
 packagist_mailer_password:
-packagist_mailer_from_email:
-packagist_mailer_from_name:
+packagist_mailer_from_email: "admin@example.org"
+packagist_mailer_from_name: "admin"

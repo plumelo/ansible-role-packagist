@@ -1,25 +1,25 @@
 parameters:
-  database_user: "{{ packagist_database_user }}"
-  database_driver: "{{ packagist_database_driver }}"
-  database_host: "{{ packagist_database_host }}"
-  database_name: "{{ packagist_database_name }}"
-  database_password: "{{ packagist_database_pass }}"
-  database_charset: "{{ packagist_database_charset }}"
+  database_user: {{ packagist_database_user }}
+  database_driver: {{ packagist_database_driver }}
+  database_host: {{ packagist_database_host }}
+  database_name: {{ packagist_database_name }}
+  database_password: {{ packagist_database_pass }}
+  database_charset: {{ packagist_database_charset }}
 
-  mailer_transport:
-  mailer_host: localhost
-  mailer_user:
-  mailer_password:
-  mailer_from_email:
-  mailer_from_name:
+  mailer_transport: {{ packagist_mailer_transport }}
+  mailer_host: {{ packagist_mailer_host }}
+  mailer_user: {{ packagist_mailer_user }}
+  mailer_password: {{ packagist_mailer_password }}
+  mailer_from_email: {{ packagist_mailer_from_email }}
+  mailer_from_name: {{ packagist_mailer_from_name }}
 
   # packagist_host: example.org
   # router.request_context.host: '%packagist_host%'
   # router.request_context.scheme: https
 
-  redis_dsn: "{{ packagist_redis_dsn }}"
+  redis_dsn: {{ packagist_redis_dsn }}
   redis_dsn_test: redis://127.0.0.1/14
-  redis_session_dsn: "{{ packagist_session_dsn }}"
+  redis_session_dsn: {{ packagist_session_dsn }}
 
   solr_host: 127.0.0.1
   solr_port: 8983
@@ -31,14 +31,14 @@ parameters:
   google_analytics:
     ga_key:
 
-  github.client_id: "{{ packagist_github_client_id }}"
-  github.client_secret: "{{ packagist_github_client_secret }}"
+  github.client_id: {{ packagist_github_client_id }}
+  github.client_secret: {{ packagist_github_client_secret }}
 
   validation_cache_backend: ~
   doctrine_cache_backend: array
 
-  secret: "{{ packagist_secret }}"
-  remember_me.secret: "{{ packagist_remember_me_secret }}"
+  secret: {{ packagist_secret }}
+  remember_me.secret: {{ packagist_remember_me_secret }}
   force_ssl: false
   trusted_proxies: ~
   trusted_hosts: ~
