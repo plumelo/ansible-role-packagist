@@ -1,51 +1,44 @@
 ---
 
 # [SYSTEM]
-packagist_websrv_user: www-data
-packagist_websrv_group: www-data
+packagist_user: 'packagist'
 # Folders
-packagist_path: "/srv/packagist"
-packagist_path_owner: "{{ packagist_websrv_user }}"
-packagist_path_group: "{{ packagist_websrv_group }}"
+packagist_path: '/srv/packagist'
 
 # Download
-packagist_download_filename: "packagist-master.zip"
-packagist_download_folder: "packagist-master"
-packagist_download_url: "https://github.com/composer/packagist/archive/master.zip"
-packagist_download_sha256: "ae338f8ab9c6c0d464ecbb61da9f9cfcf106b1c1346177eb8eda877bf5dbb225"
+packagist_download_url: 'https://github.com/composer/packagist/archive/master.tar.gz'
+# packagist_download_sha256: 'ae338f8ab9c6c0d464ecbb61da9f9cfcf106b1c1346177eb8eda877bf5dbb225'
 
 #
 packagist_hosts:
   - packagist.local
 
 # Database
-packagist_database: "mysql"
-packagist_database_driver: "pdo_mysql"
-packagist_database_name: "packagist"
-packagist_database_user: "packagist"
-packagist_database_pass: "packagist"
-packagist_database_host: "localhost"
-packagist_database_charset: "utf8"
+packagist_database: 'mysql'
+packagist_database_driver: 'pdo_mysql'
+packagist_database_name: 'packagist'
+packagist_database_user: 'packagist'
+packagist_database_pass: 'packagist'
+packagist_database_host: 'localhost'
+packagist_database_charset: 'utf8'
 
 # Redis
-packagist_redis_dsn: "redis://localhost/1"
-packagist_session_dsn: "redis://localhost/2"
+packagist_redis_dsn: 'redis://localhost/1'
+packagist_session_dsn: 'redis://localhost/2'
 
-packagist_github_client_id: "CHANGE_ME_IN_PROD"
-packagist_github_client_secret: "CHANGE_ME_IN_PROD"
+packagist_github_client_id: 'CHANGE_ME_IN_PROD'
+packagist_github_client_secret: 'CHANGE_ME_IN_PROD'
 
-packagist_secret: "CHANGE_ME_IN_PROD"
-packagist_remember_me_secret: "CHANGE_ME_IN_PROD"
+packagist_secret: 'CHANGE_ME_IN_PROD'
+packagist_remember_me_secret: 'CHANGE_ME_IN_PROD'
 
 # Packagist user
-packagist_user: "admin"
-packagist_email: "admin@yahoo.com"
-packagist_pass: "admin"
+packagist_users: []
 
 # Packagist mailer
 packagist_mailer_transport:
-packagist_mailer_host: "localhost"
+packagist_mailer_host: 'localhost'
 packagist_mailer_user:
 packagist_mailer_password:
-packagist_mailer_from_email: "admin@example.org"
-packagist_mailer_from_name: "admin"
+packagist_mailer_from_email: 'admin@example.org'
+packagist_mailer_from_name: 'admin'

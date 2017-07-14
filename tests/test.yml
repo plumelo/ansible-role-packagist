@@ -3,4 +3,8 @@
 - hosts: all
   become: yes
   roles:
-    - role: composer-packagist
+    - role: ansible-role-packagist
+      packagist_users:
+        - name: test
+          email: test@com
+          password: 1234

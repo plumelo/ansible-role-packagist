@@ -1,50 +1,24 @@
 ---
 
-- name: Create downloads folder
-  file:
-    state: directory
-    path: "{{ item }}"
+- name: Ensure packagist user exist
+  user: name='{{ packagist_user }}' state=present
+
+- name: Ensure packagist directory exist | /srv/packagist
+  file: path='{{ packagist_path }}' state=directory owner='{{ packagist_user }}' group='{{ packagist_user }}' mode='0755'
   with_items:
-    - "~/.packagist/"
+    - '{{ packagist_path }}'
+    - '{{ packagist_path }}/vendor/.cache'
+
+- name: Install composer
+  get_url: url=https://getcomposer.org/composer.phar dest=/usr/local/bin/composer mode=a+x
 
 - name: Download packagist
-  get_url:
-    url: "{{ packagist_download_url }}"
-    sha256sum: "{{ packagist_download_sha256 }}"
-    dest: "~/.packagist/{{ packagist_download_filename }}"
-  register: packagist_download
-
-
-- name: Create folders
-  file:
-    state: directory
-    owner: "{{ packagist_path_owner }}"
-    group: "{{ packagist_path_group }}"
-    path: "{{ item }}"
-  with_items:
-    - "{{ packagist_path }}"
-
-- name: Extract packagist
   unarchive:
-    src: "{{ packagist_download.dest }}"
-    creates: /root/.packagist/packagist-master/composer.json
-    dest: "~/.packagist/"
-    owner: "{{ packagist_path_owner }}"
-    group: "{{ packagist_path_group }}"
-    mode: 0775
+    src: '{{ packagist_download_url }}'
+    dest: '{{ packagist_path }}'
     remote_src: yes
-  register: packagist_unarchived
-
-- name: Copy to dest
-  command: cp -a ~/.packagist/packagist-master/. "{{ packagist_path }}"
-  args:
-    creates: /srv/packagist/composer.json
-
-- name: Set permissions
-  file:
-    owner: "{{ packagist_path_owner }}"
-    group: "{{ packagist_path_group }}"
-    path: "{{ item }}"
-    recurse: yes
-  with_items:
-    - "{{ packagist_path }}"
+    extra_opts: '--strip-components=1'
+    owner: '{{ packagist_user }}'
+    group: '{{ packagist_user }}'
+    creates: '{{ packagist_path }}/composer.json'
+  register: packagist_download_status

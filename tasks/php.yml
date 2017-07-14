@@ -10,7 +10,7 @@
       - php-mysql
     php_fpm_pools:
       - name: packagist
-        user: "{{ packagist_websrv_user }}"
-        group: "{{ packagist_websrv_user }}"
+        user: "{{ packagist_user }}"
+        group: "{{ packagist_user }}"
         listen: 9001
         chdir: /
