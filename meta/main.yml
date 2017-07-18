@@ -1,7 +1,7 @@
 galaxy_info:
   author: Meghea Iulian
   description: A simple role to setup packagist
-  company: your company (optional)
+  company: Plumelo
   license: BSD
 
   min_ansible_version: 2.0
