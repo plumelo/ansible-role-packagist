@@ -15,7 +15,7 @@ parameters:
 
   packagist_host: {{ packagist_hosts|join('') }}
   router.request_context.host: '%packagist_host%'
-  router.request_context.scheme: https
+  router.request_context.scheme: {{ packagist_scheme|default('http') }}
 
   redis_dsn: {{ packagist_redis_dsn }}
   redis_dsn_test: redis://127.0.0.1/14
@@ -40,8 +40,8 @@ parameters:
   secret: {{ packagist_secret }}
   remember_me.secret: {{ packagist_remember_me_secret }}
   
-  force_ssl: false
-  trusted_proxies: ~
-  trusted_hosts: ~
+  force_ssl: {{ packagist_force_ssl|default('false') }}
+  trusted_proxies: {{ packagist_trusted_proxies | default('~') }}
+  trusted_hosts: {{ packagist_trusted_hosts | default('~') }}
 
   session_save_path: /var/lib/php/sessions
