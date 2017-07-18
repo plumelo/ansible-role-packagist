@@ -13,9 +13,9 @@ parameters:
   mailer_from_email: {{ packagist_mailer_from_email }}
   mailer_from_name: {{ packagist_mailer_from_name }}
 
-  # packagist_host: example.org
-  # router.request_context.host: '%packagist_host%'
-  # router.request_context.scheme: https
+  packagist_host: {{ packagist_hosts|join('') }}
+  router.request_context.host: '%packagist_host%'
+  router.request_context.scheme: https
 
   redis_dsn: {{ packagist_redis_dsn }}
   redis_dsn_test: redis://127.0.0.1/14
