@@ -38,7 +38,9 @@ parameters:
   doctrine_cache_backend: array
 
   secret: {% if packagist_secret %}'{{ packagist_secret }}'{% endif %}
+  
   remember_me.secret: {% if packagist_remember_me_secret %}'{{ packagist_remember_me_secret }}'{% endif %}
+  
   force_ssl: false
   trusted_proxies: ~
   trusted_hosts: ~
