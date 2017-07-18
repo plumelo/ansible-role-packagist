@@ -59,6 +59,6 @@
   become_user: "{{ packagist_user }}"
   args:
     chdir: "{{ packagist_path }}"
-  shell: "app/console fos:user:create {{ item.name }} {{ item.email }} {{ item.password }}"
+  shell: "app/console fos:user:create {{ item.name }} {{ item.email }} {{ item.password|default(item.name) }}"
   when: item.name not in packagist_users_status.stdout and item.name|default(False) and item.email|default(False)
   with_items: "{{ packagist_users }}"
