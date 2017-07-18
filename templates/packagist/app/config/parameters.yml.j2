@@ -37,8 +37,8 @@ parameters:
   validation_cache_backend: ~
   doctrine_cache_backend: array
 
-  secret: {{ packagist_secret|quote }}
-  remember_me.secret: {{ packagist_remember_me_secret|quote }}
+  secret: {% if packagist_secret %}'{{ packagist_secret }}'{% endif %}
+  remember_me.secret: {% if packagist_remember_me_secret %}'{{ packagist_remember_me_secret }}'{% endif %}
   force_ssl: false
   trusted_proxies: ~
   trusted_hosts: ~
