@@ -1,2 +1,3 @@
 .vagrant/
-**tests/roles
+tests/roles/*
+!tests/roles/plumelo.packagist
