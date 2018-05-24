@@ -3,7 +3,7 @@
 # tasks file for composer-role
 - name: Install prerequsites
   apt:
-    update_cache: yes
+    update_cache: true
     pkg: "{{ item }}"
     state: present
   with_items:
@@ -12,9 +12,9 @@
     - acl
     - git
 
-- include: download.yml
-- include: php.yml
-- include: nginx.yml
-- include: database.yml
-- include: redis.yml
-- include: install.yml
+- import_tasks: download.yml
+- import_tasks: php.yml
+- import_tasks: nginx.yml
+- import_tasks: database.yml
+- import_tasks: redis.yml
+- import_tasks: install.yml

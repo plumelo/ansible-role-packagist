@@ -39,9 +39,14 @@ parameters:
 
   secret: {{ packagist_secret }}
   remember_me.secret: {{ packagist_remember_me_secret }}
-  
+
   force_ssl: {{ packagist_force_ssl|default('false') }}
   trusted_proxies: {{ packagist_trusted_proxies | default('~') }}
   trusted_hosts: {{ packagist_trusted_hosts | default('~') }}
+
+  algolia.app_id: {{ packagist_algolia_app_id }}
+  algolia.admin_key: {{ packagist_algolia_admin_key }}
+  algolia.search_key: {{ packagist_algolia_search_key }}
+  algolia.index_name: {{ packagist_algolia_index_name }}
 
   session_save_path: /var/lib/php/sessions
