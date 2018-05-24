@@ -1,6 +1,8 @@
 ---
 
-- include_role: name=megheaiulian.mysql private=true
+- include_role:
+    name: plumelo.mysql
+    private: true
   vars:
     mysql_databases:
       - name: "{{ packagist_database_name }}"

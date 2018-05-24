@@ -1,9 +1,9 @@
 ---
 
 - hosts: all
-  become: yes
+  become: true
   roles:
-    - role: ansible-role-packagist
+    - role: plumelo.packagist
       packagist_users:
         - name: test
           email: test@com

@@ -1,6 +1,6 @@
 ---
 
-- name:  Copy templates
+- name: Copy templates
   template:
     src: 'packagist/{{ item }}.j2'
     dest: '{{ packagist_path }}/{{ item }}'
@@ -19,8 +19,8 @@
 - name: Validate packagist schema
   shell: "app/console doctrine:schema:validate"
   become_user: '{{ packagist_user }}'
-  failed_when: no
-  changed_when: no
+  failed_when: false
+  changed_when: false
   args:
     chdir: /srv/packagist
   register: packagist_schema_status
@@ -49,7 +49,7 @@
 - name: Query sql
   shell: 'app/console doctrine:query:sql "select username from fos_user;"'
   become_user: '{{ packagist_user }}'
-  changed_when: no
+  changed_when: false
   args:
     chdir: /srv/packagist
   register: packagist_users_status
@@ -59,6 +59,8 @@
   become_user: "{{ packagist_user }}"
   args:
     chdir: "{{ packagist_path }}"
+  # yamllint disable-line rule:line-length
   shell: "app/console fos:user:create {{ item.name }} {{ item.email }} {{ item.password|default(item.name) }}"
-  when: item.name not in packagist_users_status.stdout and item.name|default(False) and item.email|default(False)
+  # yamllint disable-line rule:line-length
+  when: item.name not in packagist_users_status.stdout and item.name|default(false) and item.email|default(False)
   with_items: "{{ packagist_users }}"
